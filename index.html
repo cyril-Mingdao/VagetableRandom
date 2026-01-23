@@ -11,6 +11,10 @@
             padding: 0;
             box-sizing: border-box;
             font-family: tauhu-oo, sans-serif;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
         }
 
         body {
@@ -66,6 +70,7 @@
             max-height: 60%;
             object-fit: contain;
             animation: fadeIn 0.1s ease-in;
+            pointer-events: none;
         }
 
         .slide-text {
@@ -650,14 +655,27 @@
             }
         });
 
+        // 禁止右鍵選單
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // 禁止選取文字（額外保護）
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // 禁止拖曳
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
         // 初始化 - 顯示第一張投影片
         showSlide(0);
         updateStatus();
-
-        // 防止右鍵選單
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
     </script>
 </body>
 </html>

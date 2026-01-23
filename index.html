@@ -630,9 +630,21 @@
             togglePlayPause();
         });
 
-        // 鍵盤空白鍵事件
+        // 鍵盤事件（空白鍵、方向鍵、PageUp/PageDown）
         document.addEventListener('keydown', function(e) {
+            // 空白鍵
             if (e.code === 'Space') {
+                e.preventDefault();
+                togglePlayPause();
+            }
+            // 方向鍵：上、下、左、右
+            else if (e.code === 'ArrowUp' || e.code === 'ArrowDown' || 
+                     e.code === 'ArrowLeft' || e.code === 'ArrowRight') {
+                e.preventDefault();
+                togglePlayPause();
+            }
+            // 簡報筆按鍵：PageUp（上一頁/左鍵）、PageDown（下一頁/右鍵）
+            else if (e.code === 'PageUp' || e.code === 'PageDown') {
                 e.preventDefault();
                 togglePlayPause();
             }
